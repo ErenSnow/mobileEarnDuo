@@ -241,6 +241,8 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
     private boolean isFrequently = false;
     private boolean isfirstEnter = false;
     private int mAddfriendsText;
+    private int mNearTextNum;
+    private String mNearText;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -258,33 +260,35 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                      * 主界面
                      */
                     //获取需要打招呼的人数
-                    int mNearTextNum = PrefUtils.getInt(EarnAccessibilityService.this, "mNearTextNum", 0);
+                    //int mNearTextNum = PrefUtils.getInt(EarnAccessibilityService.this, "mNearTextNum", 0);
+                    mNearTextNum = PrefUtils.getInt(this, Constant.wxFunction[0], 0);
                     if (app.getAllowOneStart()) {
-                        String wxNearby_Num = PrefUtils.getString(this, Constant.wxFunction[0], "");
-                        if (TextUtils.isEmpty(wxNearby_Num) || wxNearby_Num.equals("0")) {
-                            wxNearby_Num = mNrearByNum;
-                        }
-                        try {
-                            mNearTextNum = Integer.parseInt(wxNearby_Num);    //String转化成Int
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+//                        if (TextUtils.isEmpty(wxNearby_Num) || wxNearby_Num.equals("0")) {
+//                            wxNearby_Num = mNrearByNum;
+//                        }
+//                        try {
+//                            mNearTextNum = Integer.parseInt(wxNearby_Num);    //String转化成Int
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
                     }
                     Log.e(TAG, "mNearTextNum: " + mNearTextNum);
                     if (app.getAllowGreeting()) {
                         sleepTime(1000);
                         //复制需要输入的评论内容
-                        String mNearText = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[1], "");//网络获取的默认值
-                        Log.e(TAG, "mNearText wan: " + mNearText);
-                        String mNearText1 = PrefUtils.getString(getApplicationContext(), "mNearText", null);//本地
-                        Log.e(TAG, "mNearText1 ben: " + mNearText1);
-                        if (mNearText.equals("null") || TextUtils.isEmpty(mNearText) || mNearText == null) {
-                            if (mNearText1 == "" || TextUtils.isEmpty(mNearText1)) {
-                                mNearText = NearByContent;
-                            } else {
-                                mNearText = mNearText1;
-                            }
-                        }
+                        //网络获取的默认值
+                        mNearText = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[1], "");
+                        Log.d("mNearText", "mNearText: " + mNearText);
+                        //Log.e(TAG, "mNearText wan: " + mNearText);
+                        //String mNearText1 = PrefUtils.getString(getApplicationContext(), "mNearText", null);//本地
+                        //Log.e(TAG, "mNearText1 ben: " + mNearText1);
+//                        if (mNearText.equals("null") || TextUtils.isEmpty(mNearText) || mNearText == null) {
+//                            if (mNearText1 == "" || TextUtils.isEmpty(mNearText1)) {
+//                                mNearText = NearByContent;
+//                            } else {
+//                                mNearText = mNearText1;
+//                            }
+//                        }
                         copyToBoard(mNearText);
 
                         //如果是主界面，并找到发现按钮

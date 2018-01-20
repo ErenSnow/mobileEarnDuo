@@ -118,12 +118,12 @@ public class NearbyPeopleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_people);
         ButterKnife.bind(this);
-        String wxNearby_Num = PrefUtils.getString(this, Constant.wxFunction[0], "");
-        if (TextUtils.isEmpty(wxNearby_Num) || wxNearby_Num.equals("0")) {
-            mEtContent.setText(mNrearByNum);
-        } else {
-            mEtContent.setText(wxNearby_Num);
-        }
+        int wxNearby_Num = PrefUtils.getInt(this, Constant.wxFunction[0], 0);
+//        if (TextUtils.isEmpty(wxNearby_Num) || wxNearby_Num.equals("0")) {
+//            mEtContent.setText(mNrearByNum);
+//        } else {
+//            mEtContent.setText(wxNearby_Num);
+//        }
         mEtContent.setSelection(mEtContent.getText().toString().trim().length());
         app = (MyApplication) getApplication();
         initDB();
