@@ -28,7 +28,6 @@ import butterknife.OnClick;
 import vicmob.earn.R;
 import vicmob.micropowder.base.BaseActivity;
 import vicmob.micropowder.config.Callback;
-import vicmob.micropowder.config.Constant;
 import vicmob.micropowder.config.MyApplication;
 import vicmob.micropowder.daoman.bean.DriftBottleContentBean;
 import vicmob.micropowder.daoman.dao.DriftBottleDao;
@@ -142,7 +141,7 @@ public class DriftBottleActivity extends BaseActivity {
                             @Override
                             public void Positive() {
                                 mText = etContentBottle.getText().toString().trim();     //输入人数
-                                if (TextUtils.isEmpty(mText)){
+                                if (TextUtils.isEmpty(mText)) {
                                     MyToast.show(DriftBottleActivity.this, "瓶子个数不能为空");
                                     return;
                                 }
@@ -190,12 +189,12 @@ public class DriftBottleActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String wx_driftbottle_num = PrefUtils.getString(DriftBottleActivity.this, Constant.wxFunction[7], "0");
-        if (wx_driftbottle_num.equals("0") || TextUtils.isEmpty(wx_driftbottle_num)) {
-            etContentBottle.setText(DriftBottleNum);
-        } else {
-            etContentBottle.setText(wx_driftbottle_num);
-        }
+//        String wx_driftbottle_num = PrefUtils.getString(DriftBottleActivity.this, Constant.wxFunction[7], "0");
+//        if (wx_driftbottle_num.equals("0") || TextUtils.isEmpty(wx_driftbottle_num)) {
+//            etContentBottle.setText(DriftBottleNum);
+//        } else {
+//            etContentBottle.setText(wx_driftbottle_num);
+//        }
         etContentBottle.setSelection(etContentBottle.getText().toString().trim().length());
         initOpenState();
     }
@@ -223,26 +222,26 @@ public class DriftBottleActivity extends BaseActivity {
                 break;
             case R.id.but_begin_bottle:
 
-                mText = etContentBottle.getText().toString().trim();     //输入人数
-                if (TextUtils.isEmpty(mText)){
-                    MyToast.show(DriftBottleActivity.this, "瓶子个数不能为空");
+                //mText = etContentBottle.getText().toString().trim();     //输入人数
+//                if (TextUtils.isEmpty(mText)){
+//                    MyToast.show(DriftBottleActivity.this, "瓶子个数不能为空");
+//
+//                    return;
+//                }
+//                try {
+//                    mBottleTextNum = Integer.parseInt(mText);    //String转化成Int
+//                } catch (NumberFormatException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                if (mBottleTextNum > 20) {
+//
+//                    MyToast.show(DriftBottleActivity.this, "瓶子个数最大为20");
+//
+//                    return;
+//                }
 
-                    return;
-                }
-                try {
-                    mBottleTextNum = Integer.parseInt(mText);    //String转化成Int
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-
-                if (mBottleTextNum > 20) {
-
-                    MyToast.show(DriftBottleActivity.this, "瓶子个数最大为20");
-
-                    return;
-                }
-
-                PrefUtils.putInt(getApplication(), "mBottleTextNum", mBottleTextNum); //存储输入人数
+                //PrefUtils.putInt(getApplication(), "mBottleTextNum", mBottleTextNum); //存储输入人数
 
                 if (isServiceOpening(DriftBottleActivity.this)) {
 

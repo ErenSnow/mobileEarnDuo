@@ -1237,21 +1237,21 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                 if (app.getDriftBottle()) {
 
                     //获取漂流瓶个数
-                    int bottleTextNum = PrefUtils.getInt(getApplication(), "mBottleTextNum", 0);
+                    //int bottleTextNum = PrefUtils.getInt(getApplication(), "mBottleTextNum", 0);
                     //复制要输入的评论内容
+                    int wx_driftbottle_num = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[7], 0);
                     if (app.getAllowOneStart()) {
-                        Log.e(TAG, "getAllowOneStart 0000000000000");
-                        String wx_driftbottle_num = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[7], "0");
-                        if (wx_driftbottle_num.equals("0") || TextUtils.isEmpty(wx_driftbottle_num)) {
-                            wx_driftbottle_num = mwx_driftbottle_num;
-                        }
-                        try {
-                            bottleTextNum = Integer.parseInt(wx_driftbottle_num);    //String转化成Int
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+//                        Log.e(TAG, "getAllowOneStart 0000000000000");
+//                        if (wx_driftbottle_num.equals("0") || TextUtils.isEmpty(wx_driftbottle_num)) {
+//                            wx_driftbottle_num = mwx_driftbottle_num;
+//                        }
+//                        try {
+//                            bottleTextNum = Integer.parseInt(wx_driftbottle_num);    //String转化成Int
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
                     }
-                    Log.e(TAG, "bottleTextNum " + bottleTextNum);
+                    // Log.e(TAG, "bottleTextNum " + bottleTextNum);
                     if (app.getAllowDriftBottle()) {
                         sleepTime(1000);
                         String bottleText = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[8], "");
@@ -1330,7 +1330,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                     if (event.getClassName().equals("com.tencent.mm.plugin.bottle.ui.BottleBeachUI")
                             && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                         int m = 0;
-                        while (m < bottleTextNum) {
+                        while (m < wx_driftbottle_num) {
                             sleepTime(1500);
                             if (isFindText("扔一个") || isFindId(IDConstant.BOTTLE_THROW)) {
                                 sleepTime(1000);
@@ -1340,7 +1340,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                                 execSlipCmd("input keyevent 4");
                                 sleepTime(1000);
                                 execSlipCmd("input keyevent 4");
-                                m = bottleTextNum;
+                                m = wx_driftbottle_num;
                             } else {
                                 sleepTime(1500);
                                 findIdAndClick(IDConstant.WX_ChangeText, 0);//键盘
