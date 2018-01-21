@@ -21,10 +21,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.sevenheaven.iosswitch.ShSwitchView;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,16 +32,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
 import vicmob.earn.R;
 import vicmob.micropowder.base.BaseActivity;
 import vicmob.micropowder.config.Callback;
-import vicmob.micropowder.config.Constant;
-import vicmob.micropowder.config.LoadData;
 import vicmob.micropowder.config.MyApplication;
-import vicmob.micropowder.config.Url;
 import vicmob.micropowder.daoman.PxDBHelper;
-import vicmob.micropowder.daoman.bean.LoadLocationBean;
 import vicmob.micropowder.daoman.bean.MapSearchBean;
 import vicmob.micropowder.daoman.bean.NearbyPeopleBean;
 import vicmob.micropowder.daoman.dao.MapSearchDao;
@@ -54,7 +46,6 @@ import vicmob.micropowder.ui.adapter.NearbyPeopleAdapter;
 import vicmob.micropowder.ui.views.ConfirmDialog;
 import vicmob.micropowder.ui.views.ContentDialog;
 import vicmob.micropowder.ui.views.DividerItemDecoration;
-import vicmob.micropowder.utils.MyLogger;
 import vicmob.micropowder.utils.MyToast;
 import vicmob.micropowder.utils.PrefUtils;
 
@@ -129,12 +120,12 @@ public class QQNearbyPeopleActivity extends BaseActivity {
         setContentView(R.layout.fragment_people_nearby);
         ButterKnife.bind(this);
         app = (MyApplication) getApplication();
-        String qq_nearby_num = PrefUtils.getString(QQNearbyPeopleActivity.this, Constant.qqFunction[0], "0");
-        if (qq_nearby_num.equals("0") || TextUtils.isEmpty(qq_nearby_num)) {
-            mEtContent.setText(mNrearByNum);
-        } else {
-            mEtContent.setText(qq_nearby_num);
-        }
+//        String qq_nearby_num = PrefUtils.getString(QQNearbyPeopleActivity.this, Constant.qqFunction[0], "0");
+//        if (qq_nearby_num.equals("0") || TextUtils.isEmpty(qq_nearby_num)) {
+//            mEtContent.setText(mNrearByNum);
+//        } else {
+//            mEtContent.setText(qq_nearby_num);
+//        }
         mEtContent.setSelection(mEtContent.getText().toString().trim().length());
         initDB();
         initRecyclerView();

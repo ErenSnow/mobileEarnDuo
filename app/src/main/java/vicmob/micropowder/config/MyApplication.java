@@ -8,6 +8,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.lang.reflect.Method;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -585,14 +586,13 @@ public class MyApplication extends Application {
                                     PrefUtils.putInt(getApplicationContext(), Constant.wxFunction[9], defaultDataStrList.getBody().getLzUsescid().getCommentNum());
                                     PrefUtils.putString(getApplicationContext(), Constant.wxFunction[10], defaultDataStrList.getBody().getLzUsescid().getCommentContent());
                                     PrefUtils.putString(getApplicationContext(), Constant.wxFunction[11], defaultDataStrList.getBody().getLzUsescid().getAutoSendContent());
-                              /*     PrefUtils.putString(getApplicationContext(), Constant.qqFunction[0], defaultDataStrList.getAuto_default_data().get(0).getQqNearbyNum() != null ? defaultDataStrList.getAuto_default_data().get(0).getQqNearbyNum() : "");
-                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[1], URLDecoder.decode(defaultDataStrList.getAuto_default_data().get(0).getQqNearbyContent() != null ? defaultDataStrList.getAuto_default_data().get(0).getQqNearbyContent().toString() : "", "UTF-8"));
-                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[2], defaultDataStrList.getAuto_default_data().get(0).getQqFriendNum() != null ? defaultDataStrList.getAuto_default_data().get(0).getQqFriendNum() : "");
-                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[3], defaultDataStrList.getAuto_default_data().get(0).getQqGroupfriendGum() != null ? defaultDataStrList.getAuto_default_data().get(0).getQqGroupfriendGum().toString() : "");
-                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[11], URLDecoder.decode(defaultDataStrList.getAuto_default_data().get(0).getQqAkeyContent() != null ? defaultDataStrList.getAuto_default_data().get(0).getQqAkeyContent().toString() : "", "UTF-8"));
-                              */
-                                    int string = PrefUtils.getInt(getApplicationContext(), Constant.wxFunction[0], 0);
-                                    Log.i("4wxac", "onResponse1111: " + string);
+                                    PrefUtils.putInt(getApplicationContext(), Constant.qqFunction[0], defaultDataStrList.getBody().getLzUsescid().getQqNearbyNum());
+                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[1], URLDecoder.decode(defaultDataStrList.getBody().getLzUsescid().getQqNearbyContent()));
+                                    PrefUtils.putInt(getApplicationContext(), Constant.qqFunction[2], defaultDataStrList.getBody().getLzUsescid().getQqFriendNum());
+                                    PrefUtils.putInt(getApplicationContext(), Constant.qqFunction[3], defaultDataStrList.getBody().getLzUsescid().getQqGroupfriendNum());
+                                    PrefUtils.putString(getApplicationContext(), Constant.qqFunction[11], URLDecoder.decode(defaultDataStrList.getBody().getLzUsescid().getQqAkeyContent()));
+//                                    int string = PrefUtils.getInt(getApplicationContext(), Constant.wxFunction[0], 0);
+//                                    Log.i("4wxac", "onResponse1111: " + string);
                                 }
 
                             } catch (Exception e) {

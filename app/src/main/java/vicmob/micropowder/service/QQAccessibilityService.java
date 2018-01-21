@@ -4,7 +4,6 @@ import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
@@ -146,6 +145,7 @@ public class QQAccessibilityService extends BaseAccessibilityService {
     private boolean isgroupend;
     private boolean isgroupswipe;
     private boolean isdanger;
+    private String str;
 
 
     @Override
@@ -158,7 +158,8 @@ public class QQAccessibilityService extends BaseAccessibilityService {
                 if (app.getQQNearbyPeople()) {
                     Log.i("123", event.getClassName().toString() + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                     //获取需要打招呼的人数
-                    int mQQNearTextNum = PrefUtils.getInt(QQAccessibilityService.this, "mQQNearTextNum", 0);
+                    //int mQQNearTextNum = PrefUtils.getInt(QQAccessibilityService.this, "mQQNearTextNum", 0);
+                    int mQQNearTextNum = PrefUtils.getInt(QQAccessibilityService.this, Constant.qqFunction[0], 0);
                     /***
                      * QQ附近人
                      * ***/
@@ -168,15 +169,15 @@ public class QQAccessibilityService extends BaseAccessibilityService {
                         sleepTime(1000);
                         //复制需要输入的评论内容
                         String mNearText = PrefUtils.getString(getApplicationContext(), Constant.qqFunction[1], "");
-                        String mNearText1 = PrefUtils.getString(getApplicationContext(), "mNearText", null);
-                        Log.i("789", mNearText + "aa");
-                        if (mNearText.equals("null") || TextUtils.isEmpty(mNearText) || mNearText == null) {
-                            if (mNearText1.equals("null") || TextUtils.isEmpty(mNearText1)) {
-                                mNearText = QQNearByContent;
-                            } else {
-                                mNearText = mNearText1;
-                            }
-                        }
+                        //String mNearText1 = PrefUtils.getString(getApplicationContext(), "mNearText", null);
+//                        Log.i("789", mNearText + "aa");
+//                        if (mNearText.equals("null") || TextUtils.isEmpty(mNearText) || mNearText == null) {
+//                            if (mNearText1.equals("null") || TextUtils.isEmpty(mNearText1)) {
+//                                mNearText = QQNearByContent;
+//                            } else {
+//                                mNearText = mNearText1;
+//                            }
+//                        }
                         copyToBoard(mNearText);
                         if (isFindText("动态")) {
                             sleepTime(2000);
@@ -459,14 +460,14 @@ public class QQAccessibilityService extends BaseAccessibilityService {
                         if (isFindQQId(QQIDConstant.QQ_INPUT)) {
                             sleepTime(1000);
                             QQfindIdAndClick(QQIDConstant.QQ_INPUT, 0);
-                            String str = PrefUtils.getString(getApplicationContext(), Constant.qqFunction[11], null);
-                            String str1 = PrefUtils.getString(getApplicationContext(), "OneKeyDialogText", null);
-                            if (str.equals("null") || TextUtils.isEmpty(str) || str == null) {
-                                if (str1 == "" || TextUtils.isEmpty(str1)) {
-                                    str = AKeyContent;
-                                } else {
-                                    str = str1;
-                                }
+                            str = PrefUtils.getString(getApplicationContext(), Constant.qqFunction[11], null);
+                            //String str1 = PrefUtils.getString(getApplicationContext(), "OneKeyDialogText", null);
+//                            if (str.equals("null") || TextUtils.isEmpty(str) || str == null) {
+//                                if (str1 == "" || TextUtils.isEmpty(str1)) {
+//                                    str = AKeyContent;
+//                                } else {
+//                                    str = str1;
+//                                }
                             }
                             //粘贴信息
                             sleepTime(1500);
@@ -491,7 +492,7 @@ public class QQAccessibilityService extends BaseAccessibilityService {
                             sleepTime(1500);
                         }
                     }
-                }
+
                 Log.i("123", event.getClassName().toString() + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 

@@ -8,7 +8,7 @@ public class DefaultDataBean {
 
 
     /**
-     * body : {"lzUsescid":{"accounts":2,"addPeopleNum":20,"address":"浙江杭州","applicationId":1,"autoSendContent":"你好，能认识你很高兴，请添加一下！","commentContent":"30","commentNum":2,"driftBottleContent":"你好，认识你真的很好！","driftBottleNum":5,"groups":5,"isNewRecord":true,"isNewRecordCustomId":false,"nearbyPeopleNum":20,"password":"so123456","pushAccounts":2,"pushfriends":10,"sendMsgContent":"你好，能认识你真的很好，请添加一下！","useScid":"9f4b9a2a7d14","username":"18258208914"}}
+     * body : {"lzUsescid":{"accounts":1,"addPeopleNum":3,"addTime":1516511786000,"address":"","applicationId":1,"autoSendContent":"自动回复66","commentContent":"评论66","commentNum":10,"driftBottleContent":"漂流瓶66","driftBottleNum":3,"groups":1,"isNewRecord":true,"isNewRecordCustomId":false,"mid":1,"nearbyPeopleNum":3,"password":"","pushAccounts":1,"pushfriends":3,"qqAkeyContent":"QQ消息","qqFriendNum":10,"qqGroupfriendNum":1,"qqNearbyContent":"QQ打招呼","qqNearbyNum":10,"sendMsgContent":"打招呼666","sid":10,"useScid":"1d30d5097d34","userid":1,"username":""}}
      * errorCode : -1
      * msg : 操作成功
      * success : true
@@ -53,7 +53,7 @@ public class DefaultDataBean {
 
     public static class BodyBean {
         /**
-         * lzUsescid : {"accounts":2,"addPeopleNum":20,"address":"浙江杭州","applicationId":1,"autoSendContent":"你好，能认识你很高兴，请添加一下！","commentContent":"30","commentNum":2,"driftBottleContent":"你好，认识你真的很好！","driftBottleNum":5,"groups":5,"isNewRecord":true,"isNewRecordCustomId":false,"nearbyPeopleNum":20,"password":"so123456","pushAccounts":2,"pushfriends":10,"sendMsgContent":"你好，能认识你真的很好，请添加一下！","useScid":"9f4b9a2a7d14","username":"18258208914"}
+         * lzUsescid : {"accounts":1,"addPeopleNum":3,"addTime":1516511786000,"address":"","applicationId":1,"autoSendContent":"自动回复66","commentContent":"评论66","commentNum":10,"driftBottleContent":"漂流瓶66","driftBottleNum":3,"groups":1,"isNewRecord":true,"isNewRecordCustomId":false,"mid":1,"nearbyPeopleNum":3,"password":"","pushAccounts":1,"pushfriends":3,"qqAkeyContent":"QQ消息","qqFriendNum":10,"qqGroupfriendNum":1,"qqNearbyContent":"QQ打招呼","qqNearbyNum":10,"sendMsgContent":"打招呼666","sid":10,"useScid":"1d30d5097d34","userid":1,"username":""}
          */
 
         private LzUsescidBean lzUsescid;
@@ -68,29 +68,39 @@ public class DefaultDataBean {
 
         public static class LzUsescidBean {
             /**
-             * accounts : 2
-             * addPeopleNum : 20
-             * address : 浙江杭州
+             * accounts : 1
+             * addPeopleNum : 3
+             * addTime : 1516511786000
+             * address :
              * applicationId : 1
-             * autoSendContent : 你好，能认识你很高兴，请添加一下！
-             * commentContent : 30
-             * commentNum : 2
-             * driftBottleContent : 你好，认识你真的很好！
-             * driftBottleNum : 5
-             * groups : 5
+             * autoSendContent : 自动回复66
+             * commentContent : 评论66
+             * commentNum : 10
+             * driftBottleContent : 漂流瓶66
+             * driftBottleNum : 3
+             * groups : 1
              * isNewRecord : true
              * isNewRecordCustomId : false
-             * nearbyPeopleNum : 20
-             * password : so123456
-             * pushAccounts : 2
-             * pushfriends : 10
-             * sendMsgContent : 你好，能认识你真的很好，请添加一下！
-             * useScid : 9f4b9a2a7d14
-             * username : 18258208914
+             * mid : 1
+             * nearbyPeopleNum : 3
+             * password :
+             * pushAccounts : 1
+             * pushfriends : 3
+             * qqAkeyContent : QQ消息
+             * qqFriendNum : 10
+             * qqGroupfriendNum : 1
+             * qqNearbyContent : QQ打招呼
+             * qqNearbyNum : 10
+             * sendMsgContent : 打招呼666
+             * sid : 10
+             * useScid : 1d30d5097d34
+             * userid : 1
+             * username :
              */
 
             private int accounts;
             private int addPeopleNum;
+            private long addTime;
             private String address;
             private int applicationId;
             private String autoSendContent;
@@ -101,12 +111,20 @@ public class DefaultDataBean {
             private int groups;
             private boolean isNewRecord;
             private boolean isNewRecordCustomId;
+            private int mid;
             private int nearbyPeopleNum;
             private String password;
             private int pushAccounts;
             private int pushfriends;
+            private String qqAkeyContent;
+            private int qqFriendNum;
+            private int qqGroupfriendNum;
+            private String qqNearbyContent;
+            private int qqNearbyNum;
             private String sendMsgContent;
+            private int sid;
             private String useScid;
+            private int userid;
             private String username;
 
             public int getAccounts() {
@@ -123,6 +141,14 @@ public class DefaultDataBean {
 
             public void setAddPeopleNum(int addPeopleNum) {
                 this.addPeopleNum = addPeopleNum;
+            }
+
+            public long getAddTime() {
+                return addTime;
+            }
+
+            public void setAddTime(long addTime) {
+                this.addTime = addTime;
             }
 
             public String getAddress() {
@@ -205,6 +231,14 @@ public class DefaultDataBean {
                 this.isNewRecordCustomId = isNewRecordCustomId;
             }
 
+            public int getMid() {
+                return mid;
+            }
+
+            public void setMid(int mid) {
+                this.mid = mid;
+            }
+
             public int getNearbyPeopleNum() {
                 return nearbyPeopleNum;
             }
@@ -237,6 +271,46 @@ public class DefaultDataBean {
                 this.pushfriends = pushfriends;
             }
 
+            public String getQqAkeyContent() {
+                return qqAkeyContent;
+            }
+
+            public void setQqAkeyContent(String qqAkeyContent) {
+                this.qqAkeyContent = qqAkeyContent;
+            }
+
+            public int getQqFriendNum() {
+                return qqFriendNum;
+            }
+
+            public void setQqFriendNum(int qqFriendNum) {
+                this.qqFriendNum = qqFriendNum;
+            }
+
+            public int getQqGroupfriendNum() {
+                return qqGroupfriendNum;
+            }
+
+            public void setQqGroupfriendNum(int qqGroupfriendNum) {
+                this.qqGroupfriendNum = qqGroupfriendNum;
+            }
+
+            public String getQqNearbyContent() {
+                return qqNearbyContent;
+            }
+
+            public void setQqNearbyContent(String qqNearbyContent) {
+                this.qqNearbyContent = qqNearbyContent;
+            }
+
+            public int getQqNearbyNum() {
+                return qqNearbyNum;
+            }
+
+            public void setQqNearbyNum(int qqNearbyNum) {
+                this.qqNearbyNum = qqNearbyNum;
+            }
+
             public String getSendMsgContent() {
                 return sendMsgContent;
             }
@@ -245,12 +319,28 @@ public class DefaultDataBean {
                 this.sendMsgContent = sendMsgContent;
             }
 
+            public int getSid() {
+                return sid;
+            }
+
+            public void setSid(int sid) {
+                this.sid = sid;
+            }
+
             public String getUseScid() {
                 return useScid;
             }
 
             public void setUseScid(String useScid) {
                 this.useScid = useScid;
+            }
+
+            public int getUserid() {
+                return userid;
+            }
+
+            public void setUserid(int userid) {
+                this.userid = userid;
             }
 
             public String getUsername() {
