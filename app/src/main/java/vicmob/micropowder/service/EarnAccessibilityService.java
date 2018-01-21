@@ -93,7 +93,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
     /**
      * 获取设置公众号个数
      */
-    private int mGetPublicText = 0;
+    //private int mGetPublicText = 0;
     /**
      * 点击公众号推送总人数
      */
@@ -105,7 +105,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
     /**
      * 获取推送联系人数
      */
-    private int mGetPeopleNumText = 0;
+    //private int mGetPeopleNumText = 0;
     /**
      * 点击推送公众号总个数
      */
@@ -113,7 +113,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
     /**
      * 获取设置公众号开始数
      */
-    private int mGetPublicNumStartText;
+    //private int mGetPublicNumStartText;
     /**
      * 群聊
      */
@@ -883,34 +883,34 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                 if (app.getPublicNumber()) {
 
                     //获取设置推送联系人个数
-                    mGetPeopleNumText = PrefUtils.getInt(EarnAccessibilityService.this, "mPeopleNum", 0);
+                    //mGetPeopleNumText = PrefUtils.getInt(EarnAccessibilityService.this, "mPeopleNum", 0);
                     //获取设置公众号个数
-                    mGetPublicText = PrefUtils.getInt(EarnAccessibilityService.this, "mPublicText", 0);
+                    //mGetPublicText = PrefUtils.getInt(EarnAccessibilityService.this, "mPublicText", 0);
                     //获取设置公众号开始数
-                    mGetPublicNumStartText = PrefUtils.getInt(EarnAccessibilityService.this, "mPublicNumStart", 0);
+                    //mGetPublicNumStartText = PrefUtils.getInt(EarnAccessibilityService.this, "mPublicNumStart", 0);
+                    int wx_public_index = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[4], 0);
+                    int wx_public_num = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[5], 0);
+                    int wx_publicfriend_num = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[6], 0);
                     if (app.getAllowOneStart()) {
-                        Log.e(TAG, "getAllowOneStart 0000000000000");
-                        String wx_public_index = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[4], "0");
-                        String wx_public_num = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[5], "0");
-                        String wx_publicfriend_num = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[6], "0");
-                        if (TextUtils.isEmpty(wx_public_index) || wx_public_index.equals("0")) {
-                            wx_public_index = mwx_public_index;
-                        }
-                        if (TextUtils.isEmpty(wx_publicfriend_num) || wx_publicfriend_num.equals("0")) {
-                            wx_publicfriend_num = mwx_publicfriend_num;
-                        }
-                        if (TextUtils.isEmpty(wx_public_num) || wx_public_num.equals("0")) {
-                            wx_public_num = mwx_public_num;
-                        }
-                        try {
-                            mGetPublicNumStartText = Integer.parseInt(wx_public_index);    //String转化成Int
-                            mGetPeopleNumText = Integer.parseInt(wx_publicfriend_num);    //String转化成Int
-                            mGetPublicText = Integer.parseInt(wx_public_num);    //String转化成Int
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+//                        Log.e(TAG, "getAllowOneStart 0000000000000");
+//                        if (TextUtils.isEmpty(wx_public_index) || wx_public_index.equals("0")) {
+//                            wx_public_index = mwx_public_index;
+//                        }
+//                        if (TextUtils.isEmpty(wx_publicfriend_num) || wx_publicfriend_num.equals("0")) {
+//                            wx_publicfriend_num = mwx_publicfriend_num;
+//                        }
+//                        if (TextUtils.isEmpty(wx_public_num) || wx_public_num.equals("0")) {
+//                            wx_public_num = mwx_public_num;
+//                        }
+//                        try {
+//                            mGetPublicNumStartText = Integer.parseInt(wx_public_index);    //String转化成Int
+//                            mGetPeopleNumText = Integer.parseInt(wx_publicfriend_num);    //String转化成Int
+//                            mGetPublicText = Integer.parseInt(wx_public_num);    //String转化成Int
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
                     }
-                    Log.e(TAG, "mGetPublicNumStartText,mGetPeopleNumText,mGetPublicText  " + mGetPublicNumStartText + " " + mGetPeopleNumText + " " + mGetPublicText);
+                    //Log.e(TAG, "mGetPublicNumStartText,mGetPeopleNumText,mGetPublicText  " + mGetPublicNumStartText + " " + mGetPeopleNumText + " " + mGetPublicText);
 
                     /**
                      * 主界面
@@ -983,8 +983,8 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                                 MyToast.show(EarnAccessibilityService.this, "服务已完结");
                             }
                         } else {
-                            if (isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < 7 && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < (mGetPublicNumStartText + mGetPublicText)
-                                    && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) >= mGetPublicNumStartText) {
+                            if (isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < 7 && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < (wx_public_index + wx_public_num)
+                                    && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) >= wx_public_index) {
                                 if (mPublicNumNumber >= isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW)) {
                                     mPublicNumTotalNumber = 0;
                                     mPublicNumTotalPeople = 0;
@@ -1031,7 +1031,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                                 mPublicNumTotalNumber++;
                                 Log.d("mm", mPublicNumNumber + "ab");
 
-                            } else if (isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < 7 && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < mGetPublicNumStartText) {
+                            } else if (isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < 7 && isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW) < wx_public_index) {
                                 //全部置零
                                 mPublicNumTotalNumber = 0;
                                 mPublicNumTotalPeople = 0;
@@ -1072,7 +1072,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                                 }
                             } else {
                                 //当获取到开始公众号>点击公众号总数  或 获取开始公众号+几个公众号 <= 点击公众号总数
-                                if ((mGetPublicText + mGetPublicNumStartText - 1) > mPublicNumTotalNumber) {
+                                if ((wx_public_num + wx_public_index - 1) > mPublicNumTotalNumber) {
                                     //                        if (mGetPublicNumStartText>mPublicNumTotalNumber||((mGetPublicNumStartText+mGetPublicText)<=mPublicNumTotalNumber)){
                                     if (mPublicNumNumber >= isFindIdlistnum(IDConstant.PUBLIC_NUM_LIST_VIEW)) {
                                         mPublicNumNumber = 0;
@@ -1134,7 +1134,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                     if (event.getClassName().equals("com.tencent.mm.ui.chatting.ChattingUI") &&
                             eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                         //当获取到开始公众号>点击公众号总数  或 获取开始公众号+几个公众号 <= 点击公众号总数
-                        Log.i("mm", mGetPublicNumStartText + "a" + mPublicNumTotalNumber + "a" + mGetPublicText);
+                        Log.i("mm", wx_public_index + "a" + mPublicNumTotalNumber + "a" + wx_public_num);
 
 //                        task = new TimerTask() {
 //                            @Override
@@ -1147,7 +1147,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
 //                        };
 //                        timer.schedule(task, 4000, 6000);
 
-                        if (mGetPublicNumStartText > mPublicNumTotalNumber || ((mGetPublicNumStartText + mGetPublicText) <= mPublicNumTotalNumber)) {
+                        if (wx_public_index > mPublicNumTotalNumber || ((wx_public_index + wx_public_num) <= mPublicNumTotalNumber)) {
                             //跳转到跳转到公众号界面
                             findIdAndClick(IDConstant.WX_PN_GO_BACK, 0);
                             sleepTime(1000);
@@ -1155,7 +1155,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                         //获取开始公众号<点击的总次数  并且  获取开始公众号+几个公众号> 点击的总次数
                         //                        else if(mGetPublicNumStartText<=mPublicNumTotalNumber&&((mGetPublicNumStartText+mGetPublicText)>mPublicNumTotalNumber)){
                         else {
-                            if (mPublicNumTotalPeople < mGetPeopleNumText) {
+                            if (mPublicNumTotalPeople < wx_publicfriend_num) {
                                 sleepTime(1000);
                                 findContentAndClick(IDConstant.WX_HEAD, 0, "聊天信息", 2);
                                 //                                execSlipCmd("input tap 1130 107");
@@ -1173,7 +1173,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                     if (event.getClassName().equals("com.tencent.mm.plugin.profile.ui.ContactInfoUI")
                             && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
                         //总的已推送人数小于获取到的人数时
-                        if (mPublicNumTotalPeople < mGetPeopleNumText) {
+                        if (mPublicNumTotalPeople < wx_publicfriend_num) {
                             sleepTime(1500);
                             findContentAndClick(IDConstant.WX_HEAD, 0, "更多", 2);
                             //                            execSlipCmd("input tap 1140 105");

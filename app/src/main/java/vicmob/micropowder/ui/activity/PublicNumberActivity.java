@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,10 +22,8 @@ import butterknife.OnClick;
 import vicmob.earn.R;
 import vicmob.micropowder.base.BaseActivity;
 import vicmob.micropowder.config.Callback;
-import vicmob.micropowder.config.Constant;
 import vicmob.micropowder.config.MyApplication;
 import vicmob.micropowder.ui.views.ConfirmDialog;
-import vicmob.micropowder.utils.MyToast;
 import vicmob.micropowder.utils.PrefUtils;
 
 /**
@@ -93,21 +90,21 @@ public class PublicNumberActivity extends BaseActivity {
     //初始化参数
     public void initView() {
         super.initData();
-        String wx_public_index = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[4], "0");
-        String wx_public_num = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[5], "0");
-        String wx_publicfriend_num = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[6], "0");
-        if (TextUtils.isEmpty(wx_public_index) || wx_public_index.equals("0")) {
-            wx_public_index = "1";
-        }
-        if (TextUtils.isEmpty(wx_publicfriend_num) || wx_publicfriend_num.equals("0")) {
-            wx_publicfriend_num = "30";
-        }
-        if (TextUtils.isEmpty(wx_public_num) || wx_public_num.equals("0")) {
-            wx_public_num = "1";
-        }
-        mEtContentPnStart.setText(wx_public_index);
-        mEtContentPn.setText(wx_public_num);
-        mEtContentPnPeople.setText(wx_publicfriend_num);
+//        String wx_public_index = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[4], "0");
+//        String wx_public_num = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[5], "0");
+//        String wx_publicfriend_num = PrefUtils.getString(PublicNumberActivity.this, Constant.wxFunction[6], "0");
+//        if (TextUtils.isEmpty(wx_public_index) || wx_public_index.equals("0")) {
+//            wx_public_index = "1";
+//        }
+//        if (TextUtils.isEmpty(wx_publicfriend_num) || wx_publicfriend_num.equals("0")) {
+//            wx_publicfriend_num = "30";
+//        }
+//        if (TextUtils.isEmpty(wx_public_num) || wx_public_num.equals("0")) {
+//            wx_public_num = "1";
+//        }
+//        mEtContentPnStart.setText(wx_public_index);
+//        mEtContentPn.setText(wx_public_num);
+//        mEtContentPnPeople.setText(wx_publicfriend_num);
         mEtContentPn.setSelection(mEtContentPn.getText().toString().trim().length());   //输入公众号数
         mEtContentPnPeople.setSelection(mEtContentPnPeople.getText().toString().trim().length());  //输入推送人数
         mEtContentPnStart.setSelection(mEtContentPnStart.getText().toString().trim().length());//输入从第几个公众号开始
@@ -128,34 +125,35 @@ public class PublicNumberActivity extends BaseActivity {
                     } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
-                    if (mPublicText <= 0 || mPeopleNum <= 0 || mPublicNumStartText <= 0) {
-                        MyToast.show(PublicNumberActivity.this, "编辑框不能为零");
+//                    if (mPublicText <= 0 || mPeopleNum <= 0 || mPublicNumStartText <= 0) {
+//                        MyToast.show(PublicNumberActivity.this, "编辑框不能为零");
+//                    } else {
+                    PrefUtils.putInt(getApplication(), "mPublicText", mPublicText); //存储输入公众号个数
+                    PrefUtils.putInt(getApplication(), "mPeopleNum", mPeopleNum);  //存储输入推送人数
+                    PrefUtils.putInt(getApplication(), "mPublicNumStart", mPublicNumStartText);//存储从第几个公众号开始数
+                    if (isServiceOpening(PublicNumberActivity.this)) {
+                        app = (MyApplication) getApplication();
+                        app.setPublicNumber(true);  //开启公众号模块
+                        app.setAllowPublicNum(true);
+                        intentWechat(); //跳转微信主界面
                     } else {
-                        PrefUtils.putInt(getApplication(), "mPublicText", mPublicText); //存储输入公众号个数
-                        PrefUtils.putInt(getApplication(), "mPeopleNum", mPeopleNum);  //存储输入推送人数
-                        PrefUtils.putInt(getApplication(), "mPublicNumStart", mPublicNumStartText);//存储从第几个公众号开始数
-                        if (isServiceOpening(PublicNumberActivity.this)) {
-                            app = (MyApplication) getApplication();
-                            app.setPublicNumber(true);  //开启公众号模块
-                            app.setAllowPublicNum(true);
-                            intentWechat(); //跳转微信主界面
-                        } else {
-                            //跳转服务界面对话框
-                            mConfirmDialog = new ConfirmDialog(PublicNumberActivity.this, new Callback() {
-                                @Override
-                                public void Positive() {
-                                    startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  //跳转服务界面
-                                }
-                                @Override
-                                public void Negative() {
-                                    mConfirmDialog.dismiss();   //关闭
-                                }
-                            });
-                            mConfirmDialog.setContent("提示：" + "\n服务没有开启不能进行下一步");
-                            mConfirmDialog.setCancelable(true);
-                            mConfirmDialog.show();
-                        }
+                        //跳转服务界面对话框
+                        mConfirmDialog = new ConfirmDialog(PublicNumberActivity.this, new Callback() {
+                            @Override
+                            public void Positive() {
+                                startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  //跳转服务界面
+                            }
+
+                            @Override
+                            public void Negative() {
+                                mConfirmDialog.dismiss();   //关闭
+                            }
+                        });
+                        mConfirmDialog.setContent("提示：" + "\n服务没有开启不能进行下一步");
+                        mConfirmDialog.setCancelable(true);
+                        mConfirmDialog.show();
                     }
+                    // }
                     return false;
                 }
                 return false;
@@ -210,35 +208,35 @@ public class PublicNumberActivity extends BaseActivity {
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
-                if (mPublicText <= 0 || mPeopleNum <= 0 || mPublicNumStartText <= 0) {
-                    MyToast.show(PublicNumberActivity.this, "编辑框不能为零");
+//                if (mPublicText <= 0 || mPeopleNum <= 0 || mPublicNumStartText <= 0) {
+//                    MyToast.show(PublicNumberActivity.this, "编辑框不能为零");
+//                } else {
+                PrefUtils.putInt(getApplication(), "mPublicText", mPublicText); //存储输入公众号个数
+                PrefUtils.putInt(getApplication(), "mPeopleNum", mPeopleNum);  //存储输入推送人数
+                PrefUtils.putInt(getApplication(), "mPublicNumStart", mPublicNumStartText);//存储从第几个公众号开始数
+                if (isServiceOpening(PublicNumberActivity.this)) {
+                    app = (MyApplication) getApplication();
+                    app.setPublicNumber(true);  //开启公众号模块
+                    app.setAllowPublicNum(true);
+                    intentWechat(); //跳转微信主界面
                 } else {
-                    PrefUtils.putInt(getApplication(), "mPublicText", mPublicText); //存储输入公众号个数
-                    PrefUtils.putInt(getApplication(), "mPeopleNum", mPeopleNum);  //存储输入推送人数
-                    PrefUtils.putInt(getApplication(), "mPublicNumStart", mPublicNumStartText);//存储从第几个公众号开始数
-                    if (isServiceOpening(PublicNumberActivity.this)) {
-                        app = (MyApplication) getApplication();
-                        app.setPublicNumber(true);  //开启公众号模块
-                        app.setAllowPublicNum(true);
-                        intentWechat(); //跳转微信主界面
-                    } else {
-                        //跳转服务界面对话框
-                        mConfirmDialog = new ConfirmDialog(PublicNumberActivity.this, new Callback() {
-                            @Override
-                            public void Positive() {
-                                startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  //跳转服务界面
-                            }
+                    //跳转服务界面对话框
+                    mConfirmDialog = new ConfirmDialog(PublicNumberActivity.this, new Callback() {
+                        @Override
+                        public void Positive() {
+                            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));  //跳转服务界面
+                        }
 
-                            @Override
-                            public void Negative() {
-                                mConfirmDialog.dismiss();   //关闭
-                            }
-                        });
-                        mConfirmDialog.setContent("提示：" + "\n服务没有开启不能进行下一步");
-                        mConfirmDialog.setCancelable(true);
-                        mConfirmDialog.show();
-                    }
+                        @Override
+                        public void Negative() {
+                            mConfirmDialog.dismiss();   //关闭
+                        }
+                    });
+                    mConfirmDialog.setContent("提示：" + "\n服务没有开启不能进行下一步");
+                    mConfirmDialog.setCancelable(true);
+                    mConfirmDialog.show();
                 }
+                //}
                 break;
         }
     }
