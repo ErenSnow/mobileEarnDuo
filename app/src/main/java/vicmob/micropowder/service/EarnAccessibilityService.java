@@ -489,39 +489,39 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                 Log.i("123", event.getClassName() + "aaa");
                 if (app.getFriendCircle()) {
                     //获取需要评论的人数
-                    int friendTextNum = PrefUtils.getInt(getApplication(), "mFriendTextNum", 0);
+                    //int friendTextNum = PrefUtils.getInt(getApplication(), "mFriendTextNum", 0);
+                    int wx_circle_num = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[9], 0);
                     if (app.getAllowOneStart()) {
-                        Log.e(TAG, "getAllowOneStart 0000000000000");
-                        String wx_circle_num = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[9], "0");
-                        if (wx_circle_num.equals("0") || TextUtils.isEmpty(wx_circle_num)) {
-                            wx_circle_num = FCNum;
-                        }
-                        try {
-                            friendTextNum = Integer.parseInt(wx_circle_num);    //String转化成Int
-                        } catch (NumberFormatException e) {
-                            e.printStackTrace();
-                        }
+//                        Log.e(TAG, "getAllowOneStart 0000000000000");
+//                        if (wx_circle_num.equals("0") || TextUtils.isEmpty(wx_circle_num)) {
+//                            wx_circle_num = FCNum;
+//                        }
+//                        try {
+//                            friendTextNum = Integer.parseInt(wx_circle_num);    //String转化成Int
+//                        } catch (NumberFormatException e) {
+//                            e.printStackTrace();
+//                        }
 
                     }
-                    Log.e(TAG, "friendTextNum : " + friendTextNum);
+                    //Log.e(TAG, "friendTextNum : " + friendTextNum);
                     if (app.getAllowFriendCircle()) {
                         sleepTime(1000);
                         //复制要输入的评论内容
                         friendText = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[10], "");//网络获取
-                        Log.e(TAG, "friendText wan : " + friendText);
-                        String friendText1 = PrefUtils.getString(getApplicationContext(), "mFriendText", null);//本地
-                        Log.e(TAG, "friendText ben : " + friendText1);
-                        if (friendText.equals("0") || TextUtils.isEmpty(friendText) || friendText.equals("null")) {
-                            if (friendText1 == null || friendText1 == "" || TextUtils.isEmpty(friendText1) || friendText1.equals("null")) {
-                                friendText = "";
-                            } else {
-                                friendText = friendText1;
-                            }
-                        }
-                        Log.i("123", friendText + "AAAAAAAAAAAAAAAAAA");
-                        if (!TextUtils.isEmpty(friendText) && !friendText.equals("null")) {
-                            copyToBoard(friendText);
-                        }
+//                        Log.e(TAG, "friendText wan : " + friendText);
+//                        String friendText1 = PrefUtils.getString(getApplicationContext(), "mFriendText", null);//本地
+//                        Log.e(TAG, "friendText ben : " + friendText1);
+//                        if (friendText.equals("0") || TextUtils.isEmpty(friendText) || friendText.equals("null")) {
+//                            if (friendText1 == null || friendText1 == "" || TextUtils.isEmpty(friendText1) || friendText1.equals("null")) {
+//                                friendText = "";
+//                            } else {
+//                                friendText = friendText1;
+//                            }
+//                        }
+//                        Log.i("123", friendText + "AAAAAAAAAAAAAAAAAA");
+//                        if (!TextUtils.isEmpty(friendText) && !friendText.equals("null")) {
+//                        }
+                        copyToBoard(friendText);
                         /**
                          * 主界面
                          */
@@ -538,7 +538,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                         }
                     } else if (event.getClassName().equals("com.tencent.mm.plugin.sns.ui.SnsTimeLineUI")
                             && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-                        for (int i = 0; i < friendTextNum; i++) {
+                        for (int i = 0; i < wx_circle_num; i++) {
                             sleepTime(1000);
                             Log.i("123", isFindIdlistnum(IDConstant.THUMBS_UP) + ":1");
                             //判定当前有几个评论只有一评论点击第一个，超过两个点击第二个，防止评论被listhead挡住。

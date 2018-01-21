@@ -1,5 +1,29 @@
 [
     {
+        "outputFile": "E:\\ErenGit\\Earn1.20\\mobileEarnDuo\\library-slidingmenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 961,
+                    "endColumn": 42,
+                    "endOffset": 999
+                },
+                "from": {
+                    "file": "E:\\ErenGit\\Earn1.20\\mobileEarnDuo\\library-slidingmenu\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 961,
+                        "endColumn": 42,
+                        "endOffset": 999
+                    }
+                }
+            }
+        ]
+    },
+    {
         "outputFile": "E:\\ErenGit\\mobileEarnDuo\\library-slidingmenu\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
         "map": [
             {

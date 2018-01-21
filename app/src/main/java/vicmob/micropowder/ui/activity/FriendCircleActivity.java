@@ -94,12 +94,12 @@ public class FriendCircleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_circle);
         ButterKnife.bind(this);
-        String wx_circle_num = PrefUtils.getString(FriendCircleActivity.this, Constant.wxFunction[9], "0");
-        if (wx_circle_num.equals("0") || TextUtils.isEmpty(wx_circle_num)) {
-            mEtContent.setText(FCNum);
-        } else {
-            mEtContent.setText(wx_circle_num);
-        }
+        int wx_circle_num = PrefUtils.getInt(FriendCircleActivity.this, Constant.wxFunction[9], 0);
+//        if (wx_circle_num.equals("0") || TextUtils.isEmpty(wx_circle_num)) {
+//            mEtContent.setText(FCNum);
+//        } else {
+//            mEtContent.setText(wx_circle_num);
+//        }
         mEtContent.setSelection(mEtContent.getText().toString().trim().length());
         initDB();
 
