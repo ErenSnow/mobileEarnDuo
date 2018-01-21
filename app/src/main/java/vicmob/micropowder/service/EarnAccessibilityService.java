@@ -203,7 +203,7 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
      * 一键发消息默认内容
      */
     private String AKeyContent = "hello!!!";
-    private int mGroupText;
+    //private int mGroupText;
     private int mClickFinish = 0;
     private final int AKEYCHATPEOPLEUI = 10;
     private int mContactlistCurrent = 0;
@@ -1255,14 +1255,14 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                     if (app.getAllowDriftBottle()) {
                         sleepTime(1000);
                         String bottleText = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[8], "");
-                        String bottleText1 = PrefUtils.getString(getApplicationContext(), "mDriftBottle", null);
-                        if (bottleText.equals("null") || TextUtils.isEmpty(bottleText) || bottleText == null) {
-                            if (bottleText1 == "" || TextUtils.isEmpty(bottleText1)) {
-                                bottleText = DriftBottleContent;
-                            } else {
-                                bottleText = bottleText1;
-                            }
-                        }
+//                        String bottleText1 = PrefUtils.getString(getApplicationContext(), "mDriftBottle", null);
+//                        if (bottleText.equals("null") || TextUtils.isEmpty(bottleText) || bottleText == null) {
+//                            if (bottleText1 == "" || TextUtils.isEmpty(bottleText1)) {
+//                                bottleText = DriftBottleContent;
+//                            } else {
+//                                bottleText = bottleText1;
+//                            }
+//                        }
                         copyToBoard(bottleText);
                         //如果是主界面，并找到发现按钮
                         if (isFindText("发现") && isFindId(IDConstant.MAIN_BUTTON)) {
@@ -1431,30 +1431,30 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                      */
                     if (event.getClassName().equals("com.tencent.mm.ui.contact.ChatroomContactUI")
                             && eventType == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
-                        mGroupText = PrefUtils.getInt(EarnAccessibilityService.this, "mGroupText", 0);
+                        //mGroupText = PrefUtils.getInt(EarnAccessibilityService.this, "mGroupText", 0);
+                        int wx_groupfriend_num = PrefUtils.getInt(EarnAccessibilityService.this, Constant.wxFunction[3], 0);
                         if (app.getAllowOneStart()) {
-                            Log.e(TAG, "getAllowOneStart 0000000000000");
-                            //wxAddFriendNum
-                            String wx_groupfriend_num = PrefUtils.getString(EarnAccessibilityService.this, Constant.wxFunction[3], "0");
-                            if (TextUtils.isEmpty(wx_groupfriend_num) || wx_groupfriend_num.equals("0")) {
-                                wx_groupfriend_num = mwx_groupfriend_num;
-                            }
-                            try {
-                                mGroupText = Integer.parseInt(wx_groupfriend_num);    //String转化成Int
-                            } catch (NumberFormatException e) {
-                                e.printStackTrace();
-                            }
+//                            Log.e(TAG, "getAllowOneStart 0000000000000");
+//                            //wxAddFriendNum
+//                            if (TextUtils.isEmpty(wx_groupfriend_num) || wx_groupfriend_num.equals("0")) {
+//                                wx_groupfriend_num = mwx_groupfriend_num;
+//                            }
+//                            try {
+//                                mGroupText = Integer.parseInt(wx_groupfriend_num);    //String转化成Int
+//                            } catch (NumberFormatException e) {
+//                                e.printStackTrace();
+//                            }
                         }
-                        Log.e(TAG, "mGroupText " + mGroupText);
+                        //Log.e(TAG, "mGroupText " + mGroupText);
                         //获取设置的起始群数
-                        if (mGroupText > out) {
-                            out = mGroupText - 1;
+                        if (wx_groupfriend_num > out) {
+                            out = wx_groupfriend_num - 1;
                         }
                         //获取群list个数并点击
                         AccessibilityNodeInfo nodeInfo = getRootInActiveWindow();
                         List<AccessibilityNodeInfo> list = nodeInfo.findAccessibilityNodeInfosByViewId("com.tencent.mm:id/" + IDConstant.GR_LiST_IMG);
                         Log.i("list", list.size() + "kk");
-                        if (mGroupText > list.size()) {
+                        if (wx_groupfriend_num > list.size()) {
                             out = list.size() - 1;
                         }
                         if (isFindId(IDConstant.GR_NULL) && isFindText("你可以通过群聊中的“保存到通讯录”选项，将其保存到这里")) {

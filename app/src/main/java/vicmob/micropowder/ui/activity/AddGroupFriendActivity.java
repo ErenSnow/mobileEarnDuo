@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -23,7 +22,6 @@ import butterknife.OnClick;
 import vicmob.earn.R;
 import vicmob.micropowder.base.BaseActivity;
 import vicmob.micropowder.config.Callback;
-import vicmob.micropowder.config.Constant;
 import vicmob.micropowder.config.MyApplication;
 import vicmob.micropowder.service.BaseAccessibilityService;
 import vicmob.micropowder.ui.views.ConfirmDialog;
@@ -74,12 +72,12 @@ public class AddGroupFriendActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group_friend);
         ButterKnife.bind(this);
-        String wx_groupfriend_num = PrefUtils.getString(AddGroupFriendActivity.this, Constant.wxFunction[3], "0");
-        if (TextUtils.isEmpty(wx_groupfriend_num) || wx_groupfriend_num.equals("0")) {
-            etContentAgf.setText(GRNum);
-        } else {
-            etContentAgf.setText(wx_groupfriend_num);
-        }
+//        String wx_groupfriend_num = PrefUtils.getString(AddGroupFriendActivity.this, Constant.wxFunction[3], "0");
+//        if (TextUtils.isEmpty(wx_groupfriend_num) || wx_groupfriend_num.equals("0")) {
+//            etContentAgf.setText(GRNum);
+//        } else {
+//            etContentAgf.setText(wx_groupfriend_num);
+//        }
         etContentAgf.setSelection(etContentAgf.getText().toString().trim().length());
         etContentAgf.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
@@ -100,19 +98,19 @@ public class AddGroupFriendActivity extends BaseActivity {
 //                        new Thread(new Runnable() {
 //                            @Override
 //                            public void run() {
-                                //先执行杀掉微信后台操作
+                        //先执行杀掉微信后台操作
 //                                mAccessibilityService = new BaseAccessibilityService();
 //                                mAccessibilityService.execShellCmd("am force-stop com.tencent.mm");
 //                                mAccessibilityService.execShellCmd("input keyevent 3");
 
-                                app.setGroupFriend(true);  //开启一键加群友模块
-                                app.setAllowAddGroup(true);
+                        app.setGroupFriend(true);  //开启一键加群友模块
+                        app.setAllowAddGroup(true);
 //                                try {
 //                                    Thread.sleep(2500);
 //                                } catch (InterruptedException e) {
 //                                    e.printStackTrace();
 //                                }
-                                intentWechat(); //跳转微信主界面
+                        intentWechat(); //跳转微信主界面
 //                            }
 //                        }).start();
 
@@ -188,19 +186,19 @@ public class AddGroupFriendActivity extends BaseActivity {
 //                    new Thread(new Runnable() {
 //                        @Override
 //                        public void run() {
-                            //先执行杀掉微信后台操作
+                    //先执行杀掉微信后台操作
 //                            mAccessibilityService = new BaseAccessibilityService();
 //                            mAccessibilityService.execShellCmd("am force-stop com.tencent.mm");
 //                            mAccessibilityService.execShellCmd("input keyevent 3");
 
-                            app.setGroupFriend(true);  //开启一键加群友模块
-                            app.setAllowAddGroup(true);
+                    app.setGroupFriend(true);  //开启一键加群友模块
+                    app.setAllowAddGroup(true);
 //                            try {
 //                                Thread.sleep(2500);
 //                            } catch (InterruptedException e) {
 //                                e.printStackTrace();
 //                            }
-                            intentWechat(); //跳转微信主界面
+                    intentWechat(); //跳转微信主界面
 //                        }
 //                    }).start();
 
