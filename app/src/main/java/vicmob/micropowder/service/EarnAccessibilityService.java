@@ -1911,14 +1911,14 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
                             sleepTime(1000);
                             findIdAndClick(IDConstant.WX_AKEYCHAT_EDIT, 0);
                             String str = PrefUtils.getString(getApplicationContext(), Constant.wxFunction[11], "");
-                            String str1 = PrefUtils.getString(getApplicationContext(), "OneKeyDialogText", null);
-                            if (str.equals("null") || TextUtils.isEmpty(str) || str == null) {
-                                if (str1 == "" || TextUtils.isEmpty(str1)) {
-                                    str = AKeyContent;
-                                } else {
-                                    str = str1;
-                                }
-                            }
+                            //String str1 = PrefUtils.getString(getApplicationContext(), "OneKeyDialogText", null);
+//                            if (str.equals("null") || TextUtils.isEmpty(str) || str == null) {
+//                                if (str1 == "" || TextUtils.isEmpty(str1)) {
+//                                    str = AKeyContent;
+//                                } else {
+//                                    str = str1;
+//                                }
+//                            }
                             sleepTime(1000);
                             inputHello(str);
                             sleepTime(1500);
