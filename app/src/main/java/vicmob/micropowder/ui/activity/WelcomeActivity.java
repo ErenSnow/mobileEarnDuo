@@ -19,7 +19,6 @@ import java.util.List;
 
 import okhttp3.Call;
 import vicmob.earn.R;
-import vicmob.micropowder.config.Constant;
 import vicmob.micropowder.config.LoadData;
 import vicmob.micropowder.config.MyApplication;
 import vicmob.micropowder.config.Url;
@@ -32,7 +31,6 @@ import vicmob.micropowder.daoman.bean.MapSearchBean;
 import vicmob.micropowder.utils.MyJsonUtil;
 import vicmob.micropowder.utils.MyLogger;
 import vicmob.micropowder.utils.MyToast;
-import vicmob.micropowder.utils.PrefUtils;
 
 /**
  * Created by sunjing on 2017/7/11.
@@ -168,7 +166,6 @@ public class WelcomeActivity extends Activity implements LoadData {
         //网络获取到的数据添加到本地数据库中
         if (mLoadLocationBean != null && mLoadLocationBean.getAuto_data() != null && mLoadLocationBean.getAuto_data().size() > 0) {
             for (int i = 0; i < mLoadLocationBean.getAuto_data().size(); i++) {
-                PrefUtils.putString(WelcomeActivity.this, Constant.wxFunction[1], mLoadLocationBean.getAuto_data().get(i).getHello());  //修改附近人打招呼内容
                 MapSearchBean mapSearchBean = new MapSearchBean();
                 mapSearchBean.setSearchAddresses(mLoadLocationBean.getAuto_data().get(i).getAddress());
                 mapSearchBean.setLatitudes(Double.parseDouble(mLoadLocationBean.getAuto_data().get(i).getLatitude()));

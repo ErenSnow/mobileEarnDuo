@@ -2136,6 +2136,8 @@ public class EarnAccessibilityService extends BaseAccessibilityService {
         //先执行杀掉微信后台操作
         execShellCmd("am force-stop com.tencent.mm");
 
+
+
         startMock(mMapSearchBeanList.get(index).getLatitudes(), mMapSearchBeanList.get(index).getLongtitudes(), mMapSearchBeanList.get(index).getLac(), mMapSearchBeanList.get(index).getCid(), mMapSearchBeanList.get(index).getMnc());
 
         app.setNearbyPeople(true);  //开启附近人模块
